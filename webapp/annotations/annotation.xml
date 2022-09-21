@@ -1,0 +1,61 @@
+<Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+		<Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+	</Reference>
+	<Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+		<Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+	</Reference>
+	<Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+		<Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+	</Reference>
+	<Reference Uri="/V2/Northwind/Northwind.svc/$metadata">
+		<Include Namespace="NorthwindModel" />
+		<Include Namespace="ODataWeb.Northwind.Model" />
+	</Reference>
+	<DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+
+			<Annotations Target="NorthwindModel.Product/ProductName">
+				<Annotation Term="Common.Label" String="{@i18n>product}" />
+			</Annotations>
+
+            <Annotations Target="NorthwindModel.Product/ProductID">
+                <Annotation Term="Common.Text" Path="ProductName"/>
+            </Annotations>
+
+			<Annotations Target="NorthwindModel.Product">
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>
+							ProductID
+						</PropertyPath>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ProductID" />
+                            <PropertyValue Property="Label" String="{@i18n>product}"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ProductName" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="QuantityPerUnit" />
+                            <PropertyValue Property="Label" String="Quantity per Unit"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ReorderLevel" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="UnitsInStock" />
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="UnitPrice" />
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</DataServices>
+</Edmx>
